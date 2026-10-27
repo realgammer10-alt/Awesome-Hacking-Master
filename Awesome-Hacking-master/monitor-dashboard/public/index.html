@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b1220">
+    <title>Endpoint Monitor | Awesome Hacking</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Endpoint Monitor home">
+          <span class="brand-mark" aria-hidden="true">M</span>
+          <span>Endpoint Monitor</span>
+        </a>
+        <div class="connection" id="connection" role="status">
+          <span class="connection-dot" aria-hidden="true"></span>
+          <span id="connection-text">Connecting</span>
+        </div>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">SERVICE OVERVIEW</p>
+        <h1 id="page-title">Endpoint health</h1>
+        <p class="subheading">A live view of the HTTP endpoints configured for this dashboard.</p>
+      </section>
+
+      <section class="summary" aria-label="Monitor summary">
+        <article class="summary-card">
+          <span class="summary-label">Total endpoints</span>
+          <strong id="total-count">—</strong>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Operational</span>
+          <strong class="text-up" id="up-count">—</strong>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Unavailable</span>
+          <strong class="text-down" id="down-count">—</strong>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Last update</span>
+          <strong class="last-updated" id="last-updated">Waiting</strong>
+        </article>
+      </section>
+
+      <section class="panel" aria-labelledby="monitors-title">
+        <div class="panel-heading">
+          <div>
+            <h2 id="monitors-title">Monitored endpoints</h2>
+            <p>Checks run automatically; this page updates as results arrive.</p>
+          </div>
+          <div class="panel-actions">
+            <button class="check-button" id="check-button" type="button">Check now</button>
+            <span class="live-label"><span aria-hidden="true"></span> LIVE</span>
+          </div>
+        </div>
+
+        <div class="notice" id="notice" role="alert" hidden></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span class="empty-icon" aria-hidden="true">+</span>
+          <h3>No endpoints configured</h3>
+          <p>Set <code>MONITORS_JSON</code> and <code>MONITOR_ALLOWED_HOSTS</code> before starting the server. See the project README for an example.</p>
+        </div>
+        <div class="table-wrap" id="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Endpoint</th>
+                <th scope="col">Status</th>
+                <th scope="col">Response</th>
+                <th scope="col">Last checked</th>
+              </tr>
+            </thead>
+            <tbody id="monitor-rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer>
+        <span>Status refreshes over a live connection.</span>
+        <span>Checks use HTTP GET and do not follow redirects.</span>
+      </footer>
+    </main>
+  </body>
+</html>
